@@ -158,3 +158,22 @@ SELECT
     dbo.fn_CheckPayloadCapacity(MissionID) AS CapacityCheck
 FROM 
     Mission;
+
+
+
+-------------  Computed Columns baed on UDF3, UDF4, UDF5 --------------------
+
+
+ALTER TABLE Mission
+ADD EstimatedEndDate AS dbo.fn_EstimatedEndDate(MissionStartDate, Duration);
+
+
+ALTER TABLE Mission
+ADD LengthCategory AS dbo.fn_MissionLengthCategoryByMissionID(MissionID);
+
+
+ALTER TABLE Mission
+ADD CapacityCheck AS dbo.fn_CheckPayloadCapacity(MissionID);
+
+
+SELECT * FROM Mission;

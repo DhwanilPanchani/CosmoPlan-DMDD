@@ -1,5 +1,5 @@
 -------------------------------------- TRIGGERS -------------------------------------
-
+USE CosmoPlan;
 
 --This trigger ensures that the sum of the mission budgets doesn't exceed the agency budget when inserting a new mission
 
@@ -29,7 +29,6 @@ BEGIN
         ROLLBACK TRANSACTION;
     END
 
-    DROP TABLE #TempTable;
 END
 GO
 
@@ -61,7 +60,6 @@ BEGIN
         ROLLBACK TRANSACTION;
     END
 
-    DROP TABLE #TempTable;
 END
 GO
 

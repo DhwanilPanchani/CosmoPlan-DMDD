@@ -101,6 +101,27 @@ INSERT INTO Spacecraft (CraftID, CraftName, SpacecraftType, PayloadCapacity, Spa
 (20, 'Interstellar Observatory', 'Observatory', 750.0000, 'Operational', 'M117');
 
 
+INSERT INTO Activity (ActivityID, ActivityType, StartDate, Duration, CraftID) VALUES
+(1, 'Orbital Maneuvers', '2025-07-23', 2, 1),
+(2, 'Scientific Experiments', '2025-08-01', 30, 2),
+(3, 'Observation Runs', '2025-08-15', 45, 3),
+(4, 'Data Transmission', '2025-09-05', 1, 4),
+(5, 'Maintenance Operations', '2025-10-10', 5, 5),
+(6, 'Rover Deployment', '2025-11-01', 7, 6),
+(7, 'Sample Collection', '2025-11-20', 10, 7),
+(8, 'Docking Procedures', '2025-12-01', 1, 8),
+(9, 'Habitat Setup', '2026-01-15', 20, 9),
+(10, 'Resource Extraction', '2026-02-10', 15, 10),
+(11, 'Spacewalks (EVA)', '2026-03-07', 3, 11),
+(12, 'Reconnaissance', '2026-04-02', 30, 12),
+(13, 'Refueling Operations', '2026-05-18', 2, 13),
+(14, 'Satellite Deployment', '2026-06-09', 1, 14),
+(15, 'Astronomical Studies', '2026-07-14', 60, 15),
+(16, 'Technology Testing', '2026-08-20', 30, 16),
+(17, 'Resupply Missions', '2026-09-05', 3, 17),
+(18, 'Life Support Checks', '2026-10-01', 5, 18),
+(19, 'Navigation Tests', '2026-10-25', 7, 19),
+(20, 'Space Debris Cleanup', '2026-11-15', 10, 20);
 
 
 
@@ -501,6 +522,7 @@ select * from Fuel
 select * from LaunchSite
 select * from LaunchVehicle
 select * from Spacecraft
+select * from Activity
 select * from ScientificInstrument
 
 

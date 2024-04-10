@@ -44,6 +44,15 @@ CREATE TABLE Spacecraft (
     FOREIGN KEY (MissionID) REFERENCES Mission(MissionID) ON DELETE CASCADE -- Assuming that spacecraft may or may not be assigned to a mission.
 );
 
+CREATE TABLE Activity (
+    ActivityID INT PRIMARY KEY,
+    ActivityType VARCHAR(255) NOT NULL CHECK (ActivityType <> ''),
+    StartDate DATE NOT NULL,
+    Duration INT NOT NULL CHECK (Duration > 0),
+    CraftID INT,
+    FOREIGN KEY (CraftID) REFERENCES Spacecraft(CraftID) ON DELETE CASCADE
+);
+
 CREATE TABLE LaunchVehicle (
     VehicleID INT PRIMARY KEY,
     VehicleName VARCHAR(255) NOT NULL CHECK (VehicleName <> ''),

@@ -45,6 +45,24 @@ AND MissionStatus = 'Planned';
 -- View 2
 -- This view could summarize the budgets of the agencies and the total budget allocated to their missions, providing a financial overview that could be very useful for analysts and financial officers.
 
+CREATE VIEW [dbo].[vw_FinancialOverview] AS
+SELECT 
+    a.AgencyID,
+    a.AgencyName,
+    a.AgencyBudget,
+    SUM(m.MissionBudget) AS TotalMissionBudgets,
+    COUNT(m.MissionID) AS NumberOfMissions,
+    AVG(m.MissionBudget) AS AverageMissionBudget
+FROM 
+    Agency a
+JOIN 
+    MissionAgencyAssignment maa ON a.AgencyID = maa.AgencyID
+JOIN 
+    Mission m ON maa.MissionID = m.MissionID
+GROUP BY 
+    a.AgencyID, 
+    a.AgencyName, 
+    a.AgencyBudget;
 
 SELECT * 
 FROM vw_FinancialOverview

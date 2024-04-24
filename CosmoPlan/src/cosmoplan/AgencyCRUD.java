@@ -13,7 +13,7 @@ public class AgencyCRUD extends JFrame {
 
     // UI Components for Agency
     private JTextField txtAgencyID, txtAgencyName, txtCountry, txtDirector, txtAgencyBudget;
-    private JButton btnCreate, btnRead, btnUpdate, btnDelete;
+    private JButton btnCreate, btnRead, btnUpdate, btnDelete, btnBack;
 
     public AgencyCRUD() {
         createUI();
@@ -36,6 +36,8 @@ public class AgencyCRUD extends JFrame {
         btnRead = new JButton("Read");
         btnUpdate = new JButton("Update");
         btnDelete = new JButton("Delete");
+        JButton btnClear = new JButton("Clear");
+        btnBack = new JButton("Back");
 
         add(new JLabel("Agency ID"));
         add(txtAgencyID);
@@ -52,12 +54,28 @@ public class AgencyCRUD extends JFrame {
         add(btnRead);
         add(btnUpdate);
         add(btnDelete);
+        add(btnClear);
+        add(btnBack);
 
+        btnClear.addActionListener(e -> clearFields());
+        btnBack.addActionListener(e -> backToDashboard());
         // Event Handling
         btnCreate.addActionListener(e -> createAgency());
         btnRead.addActionListener(e -> readAgency());
         btnUpdate.addActionListener(e -> updateAgency());
         btnDelete.addActionListener(e -> deleteAgency());
+    }
+    private void clearFields() {
+    txtAgencyID.setText("");
+    txtAgencyName.setText("");
+    txtCountry.setText("");
+    txtDirector.setText("");
+    txtAgencyBudget.setText("");
+    }
+    private void backToDashboard() {
+        Dashboard dashboard = new Dashboard(); // Create an instance of the Dashboard
+        dashboard.setVisible(true); // Show the Dashboard window
+        dispose(); // Close the current window (AgencyCRUD)
     }
 
     private void createAgency() {
@@ -147,6 +165,10 @@ public class AgencyCRUD extends JFrame {
             }
         }
     }
+    
+
+
+
 
     public static void main(String[] args) {
         SwingUtilities.invokeLater(() -> new AgencyCRUD().setVisible(true));

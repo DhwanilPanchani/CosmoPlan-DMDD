@@ -13,7 +13,7 @@ public class SpacecraftCRUD extends JFrame {
 
     // UI Components for Spacecraft
     private JTextField txtCraftID, txtCraftName, txtSpacecraftType, txtPayloadCapacity, txtSpacecraftStatus, txtMissionID;
-    private JButton btnCreate, btnRead, btnUpdate, btnDelete;
+    private JButton btnCreate, btnRead, btnUpdate, btnDelete, btnBack;
 
     public SpacecraftCRUD() {
         // Initialize UI Components
@@ -40,6 +40,8 @@ public class SpacecraftCRUD extends JFrame {
         btnRead = new JButton("Read");
         btnUpdate = new JButton("Update");
         btnDelete = new JButton("Delete");
+        JButton btnClear = new JButton("Clear");
+        btnBack = new JButton("Back");
 
         add(new JLabel("Craft ID"));
         add(txtCraftID);
@@ -58,12 +60,29 @@ public class SpacecraftCRUD extends JFrame {
         add(btnRead);
         add(btnUpdate);
         add(btnDelete);
+        add(btnClear);
+        add(btnBack);
 
         // Event Handling
+        btnBack.addActionListener(e -> backToDashboard());
+        btnClear.addActionListener(e -> clearFields());
         btnCreate.addActionListener(e -> createSpacecraft());
         btnRead.addActionListener(e -> readSpacecraft());
         btnUpdate.addActionListener(e -> updateSpacecraft());
         btnDelete.addActionListener(e -> deleteSpacecraft());
+    }
+    private void clearFields() {
+    txtCraftID.setText("");
+    txtCraftName.setText("");
+    txtSpacecraftType.setText("");
+    txtPayloadCapacity.setText("");
+    txtSpacecraftStatus.setText("");
+    txtMissionID.setText("");
+    }
+    private void backToDashboard() {
+        Dashboard dashboard = new Dashboard(); // Create an instance of the Dashboard
+        dashboard.setVisible(true); // Show the Dashboard window
+        dispose(); // Close the current window (AgencyCRUD)
     }
 
     private void createSpacecraft() {

@@ -17,7 +17,7 @@ public class AstronautCRUD extends JFrame {
 
     // UI Components for Astronaut
     private JTextField txtAstronautID, txtCallSign, txtFirstName, txtLastName, txtDateOfBirth, txtNationality, txtGender, txtSpecialty;
-    private JButton btnCreate, btnRead, btnUpdate, btnDelete;
+    private JButton btnCreate, btnRead, btnUpdate, btnDelete, btnBack;
 
     public AstronautCRUD() {
         // Initialize UI Components
@@ -31,7 +31,7 @@ public class AstronautCRUD extends JFrame {
     }
 
     private void createUI() {
-        setLayout(new GridLayout(10, 2, 5, 5));
+        setLayout(new GridLayout(11, 2, 5, 5));
 
         txtAstronautID = new JTextField();
         txtCallSign = new JTextField();
@@ -46,6 +46,8 @@ public class AstronautCRUD extends JFrame {
         btnRead = new JButton("Read");
         btnUpdate = new JButton("Update");
         btnDelete = new JButton("Delete");
+        JButton btnClear = new JButton("Clear");
+        btnBack = new JButton("Back");
 
         add(new JLabel("Astronaut ID"));
         add(txtAstronautID);
@@ -68,12 +70,31 @@ public class AstronautCRUD extends JFrame {
         add(btnRead);
         add(btnUpdate);
         add(btnDelete);
+        add(btnClear);
+        add(btnBack);
 
         // Event Handling
+        btnBack.addActionListener(e -> backToDashboard());
+        btnClear.addActionListener(e -> clearFields());
         btnCreate.addActionListener(e -> createAstronaut());
         btnRead.addActionListener(e -> readAstronaut());
         btnUpdate.addActionListener(e -> updateAstronaut());
         btnDelete.addActionListener(e -> deleteAstronaut());
+    }
+    private void clearFields() {
+    txtAstronautID.setText("");
+    txtCallSign.setText("");
+    txtFirstName.setText("");
+    txtLastName.setText("");
+    txtDateOfBirth.setText("");
+    txtNationality.setText("");
+    txtGender.setText("");
+    txtSpecialty.setText("");
+    }
+    private void backToDashboard() {
+        Dashboard dashboard = new Dashboard(); // Create an instance of the Dashboard
+        dashboard.setVisible(true); // Show the Dashboard window
+        dispose(); // Close the current window (AgencyCRUD)
     }
 
     private void createAstronaut() {

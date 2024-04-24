@@ -12,7 +12,7 @@ public class PayloadCRUD extends JFrame {
 
     // UI Components
     private JTextField txtPayloadID, txtPayloadName, txtPayloadType, txtWeight;
-    private JButton btnCreate, btnRead, btnUpdate, btnDelete;
+    private JButton btnCreate, btnRead, btnUpdate, btnDelete, btnBack;
 
     public PayloadCRUD() {
         // Initialize UI Components
@@ -26,7 +26,7 @@ public class PayloadCRUD extends JFrame {
     }
 
     private void createUI() {
-        setLayout(new GridLayout(6, 2, 5, 5));
+        setLayout(new GridLayout(7, 2, 5, 5));
 
         txtPayloadID = new JTextField();
         txtPayloadName = new JTextField();
@@ -37,6 +37,8 @@ public class PayloadCRUD extends JFrame {
         btnRead = new JButton("Read");
         btnUpdate = new JButton("Update");
         btnDelete = new JButton("Delete");
+        JButton btnClear = new JButton("Clear");
+        btnBack = new JButton("Back");
 
         add(new JLabel("Payload ID"));
         add(txtPayloadID);
@@ -51,12 +53,27 @@ public class PayloadCRUD extends JFrame {
         add(btnRead);
         add(btnUpdate);
         add(btnDelete);
+        add(btnClear);
+        add(btnBack);
 
         // Event Handling
+        btnBack.addActionListener(e -> backToDashboard());
+        btnClear.addActionListener(e -> clearFields());
         btnCreate.addActionListener(e -> createPayload());
         btnRead.addActionListener(e -> readPayload());
         btnUpdate.addActionListener(e -> updatePayload());
         btnDelete.addActionListener(e -> deletePayload());
+    }
+    private void clearFields() {
+    txtPayloadID.setText("");
+    txtPayloadName.setText("");
+    txtPayloadType.setText("");
+    txtWeight.setText("");
+    }
+    private void backToDashboard() {
+        Dashboard dashboard = new Dashboard(); // Create an instance of the Dashboard
+        dashboard.setVisible(true); // Show the Dashboard window
+        dispose(); // Close the current window (AgencyCRUD)
     }
 
     private void createPayload() {

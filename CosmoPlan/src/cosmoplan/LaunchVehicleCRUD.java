@@ -13,7 +13,7 @@ public class LaunchVehicleCRUD extends JFrame {
 
     // UI Components for LaunchVehicle
     private JTextField txtVehicleID, txtVehicleName, txtVehicleType, txtPayloadCapacity, txtManufacturer, txtMissionID;
-    private JButton btnCreate, btnRead, btnUpdate, btnDelete;
+    private JButton btnCreate, btnRead, btnUpdate, btnDelete, btnBack;
 
     public LaunchVehicleCRUD() {
         // Initialize UI Components
@@ -40,6 +40,8 @@ public class LaunchVehicleCRUD extends JFrame {
         btnRead = new JButton("Read");
         btnUpdate = new JButton("Update");
         btnDelete = new JButton("Delete");
+        JButton btnClear = new JButton("Clear");
+        btnBack = new JButton("Back");
 
         add(new JLabel("Vehicle ID"));
         add(txtVehicleID);
@@ -58,12 +60,29 @@ public class LaunchVehicleCRUD extends JFrame {
         add(btnRead);
         add(btnUpdate);
         add(btnDelete);
+        add(btnClear);
+        add(btnBack);
 
         // Event Handling
+        btnBack.addActionListener(e -> backToDashboard());
+        btnClear.addActionListener(e -> clearFields());
         btnCreate.addActionListener(e -> createLaunchVehicle());
         btnRead.addActionListener(e -> readLaunchVehicle());
         btnUpdate.addActionListener(e -> updateLaunchVehicle());
         btnDelete.addActionListener(e -> deleteLaunchVehicle());
+    }
+    private void clearFields() {
+    txtVehicleID.setText("");
+    txtVehicleName.setText("");
+    txtVehicleType.setText("");
+    txtPayloadCapacity.setText("");
+    txtManufacturer.setText("");
+    txtMissionID.setText("");
+    }
+    private void backToDashboard() {
+        Dashboard dashboard = new Dashboard(); // Create an instance of the Dashboard
+        dashboard.setVisible(true); // Show the Dashboard window
+        dispose(); // Close the current window (AgencyCRUD)
     }
 
     

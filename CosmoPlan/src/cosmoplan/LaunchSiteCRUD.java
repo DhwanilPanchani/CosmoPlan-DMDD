@@ -12,7 +12,7 @@ public class LaunchSiteCRUD extends JFrame {
 
     // UI Components for LaunchSite
     private JTextField txtSiteID, txtSiteName, txtLocation, txtLaunchCapacity;
-    private JButton btnCreate, btnRead, btnUpdate, btnDelete;
+    private JButton btnCreate, btnRead, btnUpdate, btnDelete, btnBack;
 
     public LaunchSiteCRUD() {
         createUI();
@@ -23,7 +23,7 @@ public class LaunchSiteCRUD extends JFrame {
     }
 
     private void createUI() {
-        setLayout(new GridLayout(6, 2, 5, 5));
+        setLayout(new GridLayout(7, 2, 5, 5));
 
         txtSiteID = new JTextField();
         txtSiteName = new JTextField();
@@ -34,6 +34,8 @@ public class LaunchSiteCRUD extends JFrame {
         btnRead = new JButton("Read");
         btnUpdate = new JButton("Update");
         btnDelete = new JButton("Delete");
+        JButton btnClear = new JButton("Clear");
+        btnBack = new JButton("Back");
 
         add(new JLabel("Site ID"));
         add(txtSiteID);
@@ -48,12 +50,27 @@ public class LaunchSiteCRUD extends JFrame {
         add(btnRead);
         add(btnUpdate);
         add(btnDelete);
+        add(btnClear);
+        add(btnBack);
 
         // Event Handling
+        btnBack.addActionListener(e -> backToDashboard());
+        btnClear.addActionListener(e -> clearFields());
         btnCreate.addActionListener(e -> createLaunchSite());
         btnRead.addActionListener(e -> readLaunchSite());
         btnUpdate.addActionListener(e -> updateLaunchSite());
         btnDelete.addActionListener(e -> deleteLaunchSite());
+    }
+    private void clearFields() {
+    txtSiteID.setText("");
+    txtSiteName.setText("");
+    txtLocation.setText("");
+    txtLaunchCapacity.setText("");
+    }
+    private void backToDashboard() {
+        Dashboard dashboard = new Dashboard(); // Create an instance of the Dashboard
+        dashboard.setVisible(true); // Show the Dashboard window
+        dispose(); // Close the current window (AgencyCRUD)
     }
 
     private void createLaunchSite() {
